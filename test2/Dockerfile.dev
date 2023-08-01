@@ -10,7 +10,6 @@ COPY package.json package-lock.json ./
 # Instalamos las dependencias
 RUN npm install 
 
-
 # Instalar Angular CLI de manera global dentro del contenedor
 RUN npm install -g @angular/cli
 
