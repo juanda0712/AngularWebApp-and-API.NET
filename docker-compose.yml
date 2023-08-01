@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  angular-app:
+    build:
+      context: ./test-app
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./test-app:/app
