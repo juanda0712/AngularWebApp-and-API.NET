@@ -1,0 +1,23 @@
+# Utilizamos la imagen Alpine más ligera de Node
+FROM node:18.17.0-alpine
+
+# Establecemos el directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# Copiamos primero solo el archivo de dependencias para aprovechar la caché de Docker
+COPY package.json package-lock.json ./
+
+# Instalamos las dependencias
+RUN npm install 
+
+# Instalar Angular CLI de manera global dentro del contenedor
+RUN npm install -g @angular/cli
+
+# Copiamos todos los archivos de la aplicación al contenedor
+COPY . .
+
+# Exponemos el puerto 3000 para el servidor de desarrollo
+EXPOSE 3000
+
+# Ejecutamos el servidor de desarrollo al iniciar el contenedor
+CMD ["npm", "run", "start"]
